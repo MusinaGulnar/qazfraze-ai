@@ -2,11 +2,18 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import OpenAI from "openai";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 dotenv.config();
 
 const app = express();
-const PORT = 3001;
+const PORT = Number(process.env.PORT) || 3001;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const projectRoot = path.resolve(__dirname, "..");
+const distPath = path.join(projectRoot, "dist");
+const indexPath = path.join(distPath, "index.html");
 
 const allowedOrigin = process.env.CLIENT_ORIGIN;
 
@@ -209,14 +216,12 @@ app.post("/api/generate-image", async (req, res) => {
         error: "Фразеологизм енгізілмеді.",
       });
     }
-
     if (phrase.trim().length > 500) {
       return res.status(400).json({
         success: false,
         error: "Фразеологизм тым ұзын.",
       });
     }
-
     const imagePrompt = `
 Create a high-quality editorial illustration for a Kazakh
 language and culture educational platform.
@@ -320,9 +325,28 @@ ${language === "ru" ? "Russian interface" : "Kazakh interface"}
 });
 
 /* =========================
+   PRODUCTION FRONTEND
+========================= */
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(distPath));
+
+  app.get(
+    /^(?!\/api(?:\/|$)).*/,
+    (req, res, next) => {
+      res.sendFile(indexPath, (error) => {
+        if (error) {
+          next(error);
+        }
+      });
+    }
+  );
+}
+
+/* =========================
    START SERVER
 ========================= */
 
 app.listen(PORT, () => {
-  console.log(`QAZFRAZE AI backend: http://localhost:${PORT}`);
+  console.log(`QAZFRAZE AI server: http://localhost:${PORT}`);
 });

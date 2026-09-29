@@ -1,16 +1,81 @@
-# React + Vite
+QAZFRAZE AI
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+QAZFRAZE AI is a research and learning platform for Kazakh phraseology. It combines a searchable 150-entry corpus, AI-assisted phrase analysis, cultural context, translations, image generation, and interactive language games.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- AI phrase analysis through `/api/analyze`
+- Kazakh and Russian interfaces
+- Local analysis cache
+- Research corpus with search, filters, phrase details, and pagination
+- Corpus-to-AI analysis and image generation
+- AI image generation through `/api/generate-image`
+- WordGame and DiplomatGame learning modes
+- Copy, share, responsive layout, and mobile sidebar
 
-## React Compiler
+## Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19 and Vite
+- Tailwind CSS
+- Express
+- OpenAI server SDK
+- `lucide-react`
 
-## Expanding the Oxlint configuration
+## Local Development
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the Vite frontend:
+
+```bash
+npm run dev
+```
+
+Start the API server in a second terminal:
+
+```bash
+npm run server
+```
+
+The Vite development server proxies `/api` requests to `http://localhost:3001`.
+
+## Production
+
+Build the frontend:
+
+```bash
+npm run build
+```
+
+Start the single Express process:
+
+```bash
+npm start
+```
+
+When `NODE_ENV=production`, Express serves the built `dist` directory and keeps `/api/*` routes connected to the existing API handlers. `PORT` defaults to `3001`.
+
+## Environment Variables
+
+The backend reads these variable names from the server environment or a local `.env` file:
+
+- `OPENAI_API_KEY`
+- `CLIENT_ORIGIN`
+- `PORT`
+
+`OPENAI_API_KEY` is server-side only and must never be placed in frontend code, committed to Git, or exposed in a client bundle. The `.env` file is ignored by Git.
+
+## Health Check
+
+With the server running:
+
+```text
+GET /api/health
+```
+
+The endpoint returns a JSON response confirming that the QAZFRAZE AI backend is running.
+
