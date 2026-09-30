@@ -3094,7 +3094,7 @@ function ChatInput({
           />
 
           <button
-            onClick={sendMessage}
+            onClick={() => sendMessage()}
             disabled={
               !message.trim() ||
               loading
