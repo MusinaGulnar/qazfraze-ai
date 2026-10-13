@@ -8,7 +8,7 @@ const HIGH_SCORE_KEY = "qazfraze_word_game_high_score";
 
 const ui = {
   kk: {
-    title: "Своими сөзбен",
+    title: "Сөзбен жина",
     subtitle: "Фразеологизмді дұрыс құрастыр",
     round: "Раунд",
     score: "Ұпай",
@@ -43,10 +43,11 @@ const ui = {
     accuracy: "Дәлдік",
     corpus: "150 фразеологизм",
     tapAgain: "Қате сөзді бассаңыз, таңдау жойылады",
+    loading: "Ойын деректері жүктелуде...",
   },
 
   ru: {
-    title: "Своими словами",
+    title: "Собери словами",
     subtitle: "Соберите правильный фразеологизм",
     round: "Раунд",
     score: "Очки",
@@ -81,6 +82,7 @@ const ui = {
     accuracy: "Точность",
     corpus: "150 фразеологизмов",
     tapAgain: "Нажмите на выбранное слово, чтобы убрать его",
+    loading: "Загрузка данных игры...",
   },
 };
 
@@ -382,7 +384,7 @@ export default function WordGame({
     return (
       <div className="flex min-h-[600px] items-center justify-center rounded-[32px] bg-[#f7f9fc]">
         <div className="text-sm font-semibold text-slate-500">
-          Ойын деректері жүктелуде...
+          {text.loading}
         </div>
       </div>
     );

@@ -156,7 +156,7 @@ export const wordGameData = {
       phrase: "бел буу",
       words: [
         "бел",
-        "бу",
+        "буу",
         "кіріскен",
         "жол",
         "табу",

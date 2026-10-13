@@ -42,7 +42,7 @@ const ui = {
     accuracy: "Дәлдік",
     conversations: "Ситуациялар",
     continue: "Жалғастыру",
-    bestScore: "Рекорд",
+    question: "Сұрақ",
     bestScore: "Рекорд",
   },
 
@@ -84,6 +84,7 @@ const ui = {
     teacher: "Учитель",
     businessman: "Предприниматель",
     grandmother: "Мудрая бабушка",
+    question: "Вопрос",
     bestScore: "Рекорд",
   },
 };

@@ -195,7 +195,7 @@ function CorpusPage({
 
             <button
               onClick={onBack}
-              className="self-start rounded-lg border border-slate-200 bg-white px-3 py-2 text-[10px] font-bold text-slate-600 shadow-sm transition hover:border-indigo-200 hover:bg-indigo-50 hover:text-[#5f6cff] sm:self-auto"
+              className="inline-flex items-center gap-1.5 self-start rounded-lg border border-slate-200 bg-white px-3 py-2 text-[10px] font-bold text-slate-600 shadow-sm transition hover:border-indigo-200 hover:bg-indigo-50 hover:text-[#5f6cff] sm:self-auto"
             >
               <ArrowLeft size={14} />
               {kk ? "AI чатқа оралу" : "Вернуться в AI-чат"}

@@ -325,6 +325,17 @@ ${language === "ru" ? "Russian interface" : "Kazakh interface"}
 });
 
 /* =========================
+   API 404 HANDLER
+========================= */
+
+app.use("/api", (req, res) => {
+  res.status(404).json({
+    success: false,
+    error: "API endpoint табылмады.",
+  });
+});
+
+/* =========================
    PRODUCTION FRONTEND
 ========================= */
 

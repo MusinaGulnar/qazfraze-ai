@@ -804,15 +804,20 @@ function App() {
   */
 
   const sendMessage = async (phraseOverride) => {
+    const raw =
+      typeof phraseOverride === "string"
+        ? phraseOverride
+        : message;
+
     if (
-      !(phraseOverride ?? message).trim() ||
+      typeof raw !== "string" ||
+      !raw.trim() ||
       loading
     ) {
       return;
     }
 
-    const text =
-      (phraseOverride ?? message).trim();
+    const text = raw.trim();
 
     const corpusEntry =
       findPhrase(text);
@@ -2730,11 +2735,32 @@ function GameArea({
       )}
 
       {activeGame === "diplomat" && (
-        <DiplomatGame
-          language={language}
-          t={t}
-          onBack={onBack}
-        />
+        <div className="mx-auto w-full max-w-5xl p-2.5 sm:p-4 md:p-6">
+          <div className="mb-3 flex items-center justify-between gap-2">
+            <button
+              onClick={() => onOpenWordGame()}
+              className="rounded-lg border border-slate-200 bg-white px-2.5 py-2 text-[10px] font-bold text-slate-500 transition hover:border-indigo-200 hover:bg-indigo-50 hover:text-[#5f6cff]"
+            >
+              {language === "kk"
+                ? "Алдыңғы ойын"
+                : "Предыдущая игра"}
+            </button>
+
+            <button
+              onClick={onBack}
+              className="rounded-lg border border-slate-200 bg-white px-2.5 py-2 text-[10px] font-bold text-slate-600 transition hover:border-indigo-200 hover:bg-indigo-50 hover:text-[#5f6cff]"
+            >
+              <ArrowUp size={14} className="-rotate-90" />
+              {t.gameBack}
+            </button>
+          </div>
+
+          <DiplomatGame
+            language={language}
+            t={t}
+            onBack={onBack}
+          />
+        </div>
       )}
 
     </div>

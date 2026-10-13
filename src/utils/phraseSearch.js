@@ -1,4 +1,4 @@
-import { phraseologisms } from "../data/phraseologisms";
+import { phraseologisms } from "../data/phraseologisms.js";
 
 export function normalizeText(text = "") {
   return text
