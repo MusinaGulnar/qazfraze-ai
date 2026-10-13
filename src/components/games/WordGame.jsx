@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { wordGameData } from "../../data/wordGameData";
 
-const ROUND_TIME = 15;
+const ROUND_TIME = 30;
 const TOTAL_ROUNDS = 15;
 const HIGH_SCORE_KEY = "qazfraze_word_game_high_score";
 
